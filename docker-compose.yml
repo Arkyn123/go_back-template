@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=go_base
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    container_name: go_base
+    ports:
+      - 5432:5432
+    volumes:
+      - /home/${USERNAME}/volumes/go_base/pgdata:/var/lib/postgresql/data
+
+  hazard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pet
+    image: pet:1.0
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+ 
