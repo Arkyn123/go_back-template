@@ -9,6 +9,7 @@ import (
 type Sueta interface {
 	Create(sueta pet.Sueta) (int, int, error)
 	FindAll() ([]pet.Sueta, error)
+	Delete(id int) (pet.Sueta, error)
 }
 
 type Repository struct {

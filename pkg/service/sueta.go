@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"net/http"
 	"pet"
 	"pet/pkg/repository"
@@ -32,4 +33,14 @@ func (r *SuetaService) FindAll() ([]pet.Sueta, error) {
 	}
 
 	return suetas, nil
+}
+
+func (r *SuetaService) DeleteSueta(id int) (pet.Sueta, error) {
+	fmt.Println(id)
+	sueta, err := r.repo.Delete(id)
+	if err != nil {
+		return pet.Sueta{}, err
+	}
+
+	return sueta, nil
 }

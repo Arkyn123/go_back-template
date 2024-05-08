@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"pet"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,9 +33,11 @@ func (h *Handler) findAllSueta(c *gin.Context) {
 }
 
 func (h *Handler) deleteSueta(c *gin.Context) {
-	id, ok := c.Get("id")
-	if !ok {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "cannot read id"})
 	}
-	fmt.Println(id)
+	sueta, err := h.services.Sueta.DeleteSueta(id)
+
+	c.JSON(http.StatusOK, sueta)
 }
