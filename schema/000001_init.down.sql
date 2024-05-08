@@ -1,1 +1,1 @@
-DROP TABLE sueta
+DROP TABLE temp

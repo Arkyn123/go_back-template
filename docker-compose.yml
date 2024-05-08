@@ -18,8 +18,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: pet
-    image: pet:1.0
+    container_name: template
+    image: template:1.0
     ports:
       - 8000:8000
     depends_on:

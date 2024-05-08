@@ -1,4 +1,4 @@
-module pet
+module temp
 
 go 1.22.2
 

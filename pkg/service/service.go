@@ -1,24 +1,21 @@
 package service
 
 import (
-	"pet"
-	"pet/pkg/repository"
+	"temp/pkg/repository"
 )
 
 //go:generate mockgen -source=service.go -destination=mocks/mock.go
 
-type Sueta interface {
-	Create(sueta pet.Sueta) (int, int, error)
-	FindAll() ([]pet.Sueta, error)
-	DeleteSueta(id int) (pet.Sueta, error)
+type Temp interface {
+	Temp()
 }
 
 type Service struct {
-	Sueta
+	Temp
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Sueta: NewSuetaService(repos.Sueta),
+		Temp: NewTempService(repos.Temp),
 	}
 }

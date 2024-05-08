@@ -4,11 +4,11 @@ import (
 	"context"
 	"os"
 	"os/signal"
-	"pet"
-	"pet/pkg/handler"
-	"pet/pkg/repository"
-	"pet/pkg/service"
 	"syscall"
+	"temp"
+	"temp/pkg/handler"
+	"temp/pkg/repository"
+	"temp/pkg/service"
 	"time"
 
 	_ "github.com/lib/pq"
@@ -39,7 +39,7 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
-	srv := new(pet.Server)
+	srv := new(temp.Server)
 	go func() {
 		if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
 			logrus.Fatalf("error occured while running http server: %s", err.Error())

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"pet/pkg/service"
+	"temp/pkg/service"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -19,8 +19,6 @@ func NewHandler(services *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.Default()
 
-	// router.Use(middleware.CORSMiddleware())
-
 	router.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"GET", "POST", "DELETE"},
@@ -33,12 +31,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		MaxAge: 12 * time.Hour,
 	}))
 
-	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	sueta := router.Group("/sueta")
+	test := router.Group("/sueta")
 	{
-		sueta.GET("/", h.findAllSueta)
-		sueta.POST("/", h.createSueta)
-		sueta.DELETE("/:id", h.deleteSueta)
+		test.GET("/", h.test)
 	}
 
 	return router
